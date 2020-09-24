@@ -1,0 +1,134 @@
+<div class="flex flex-col items-center">
+  <%= image_tag image_path('cpf-logo.jpg'), class: 'w-32 pt-6' %>
+  <h1 class="text-2xl text-center mt-6">
+      Attestation sur l’honneur <br/> 
+      pour s’inscrire à une action de formation <br />
+      dispensée aux créateurs et repreneurs d’entreprise 
+  </h1>
+  <p class="text-center mt-6 mx-12 lg:mx-56">
+      Vous avez choisi de mobiliser vos droits CPF en vue de suivre une 
+      action de formation dispensée aux créateurs et repreneurs d’entreprise, 
+      mentionnée à l’article 1 du Décret n° 2018-1338 du 28 décembre 2018 relatif aux 
+      formations éligibles au titre du compte personnel de formation
+  </p>
+  <div class="mx-12">
+    <%= form_with(url: '/submit', method: "post", local: true, class: 'w-full flex flex-col items-center bg-white rounded shadow sm:shadow-md md:shadow-lg lg:shadow-xl xl:shadow-xl px-6 md:px-12 pt-8 pb-8 mb-4') do |f| %>
+    <div class="flex flex-col justify-between md:flex-row w-full">
+      <div class="w-full md:w-1/2 md:mr-10">
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-1/5 pr-3">
+            <div class="mb-6">
+              <label class="block text-gray-700 font-bold mb-3">
+                Civilité
+              </label>
+              <%= f.select :civility, options_for_select([['M.', 'M.'], ['Mme', 'Mme']], params[:civility]), {}, { :class => 'shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', required: true} %>
+            </div>
+          </div>
+          <div class="md:w-4/5">
+            <div class="mb-6">
+              <label class="block text-gray-700 font-bold mb-3">
+                Nom
+              </label>
+              <%= f.text_field :firstname, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'Elon', required: true %>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 font-bold mb-3">
+            Prénom
+          </label>
+          <%= f.text_field :lastname, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'Musk', required: true %>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 font-bold mb-3">
+            Email
+          </label>
+          <%= f.email_field :email, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'elon.musk@tesla.io', required: true %>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <div class="mb-6">
+          <label class="block text-gray-700 font-bold mb-3">
+            Adresse
+          </label>
+           <%= f.text_field :address, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: '25 Rue de Paradis', required: true %>
+        </div>
+        <div class="mb-6">
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/3 pr-3">
+              <label class="block text-gray-700 font-bold mb-3">
+                Code Postal
+              </label>
+              <%= f.text_field :zipcode, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: '75007', required: true %>
+            </div>
+            <div class="md:w-2/3">
+              <label class="block text-gray-700 font-bold mb-3">
+                Ville
+              </label>
+              <%= f.text_field :city, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'Paris', required: true %>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 font-bold mb-3">
+            Numéro de Téléphone
+          </label>
+          <%= f.phone_field :phone_number, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: '0635791215', required: true %>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col w-full">
+      <div role="group" aria-labelledby="my-radio-group">
+        <label class="block text-gray-700 font-bold mb-3">
+          Dans quel cas vous trouvez-vous ?
+        </label>
+
+        <label class="flex items-center my-2 pl-5">
+          <%= f.radio_button :situation, "1",class: 'checked:bg-blue-800 checked:border-transparent mr-2', required: true %>
+          Création d'enteprise
+          <span class='tooltip bg-gray-500 rounded-full py-1/2 px-2 ml-3 text-sm text-bold font-serif text-white invisible hover:visible p-4 absolute z-50 inline-block ml-12 text-sm w-1/5 rounded-lg bg-blue-800 text-white'>
+            i
+          <span class='tooltip-text p-3 -mt-6 -ml-6 rounded font-lato invisible hover:visible p-4 absolute z-50 inline-block ml-12 text-sm w-1/5 rounded-lg bg-blue-800 text-white'>Si vous avez un projet de démarrage d’activité professionnelle</span>
+          </span>
+        </label>
+        <label class="flex items-center my-2 pl-5">
+          <%= f.radio_button :situation, "2",class: 'checked:bg-blue-800 checked:border-transparent mr-2', required: true %>
+          Reprise d'entreprise
+          <span class='tooltip bg-gray-500 rounded-full py-1/2 px-2 ml-3 text-sm text-bold font-serif text-white hover:visible invisible p-4 absolute z-50 inline-block ml-12 text-sm w-1/5 rounded-lg bg-blue-800 text-white'>
+            i
+          <span class='tooltip-text p-3 -mt-6 -ml-6 rounded font-lato hover:visible invisible p-4 absolute z-50 inline-block ml-12 text-sm w-1/5 rounded-lg bg-blue-800 text-white'>Si vous avez un projet d’amélioration de compétences professionnelles</span>
+          </span>
+        </label>
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-3">
+          Pouvez-vous exposer en quelques lignes votre projet professionnel et dans quelle mesure l'inscription à la formation demandée s’y inscrit :
+        </label>
+        <%= f.text_area :motivations, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline', placeholder: "Je m'inscrit à cette formation car je souhaite construire une fusée pour aller conquérir Mars mais aussi ...", required: true %>
+
+        <label class="block text-gray-700 font-bold mb-3">
+          <%= f.check_box :consent_cpf, class: 'mr-3 shadow border focus:outline-none focus:shadow-outline', required: true %>
+          Je certifie sur l’honneur l’exactitude des informations mentionnées dans le présent document.
+        </label>
+      </div>
+      <div class="flex justify-end">
+        <%= f.submit 'Envoyer', class: 'bg-yellow-500 text-white text-base font-bold py-2 px-4 rounded' %> 
+      </div>
+    </div>
+  <% end %>
+  </div>
+
+
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  

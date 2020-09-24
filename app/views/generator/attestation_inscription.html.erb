@@ -1,0 +1,67 @@
+<div class="pdf-body">
+  <%= image_tag wicked_pdf_asset_base64('cpf-logo.jpg') , class: 'logo-cpf' %>
+  <div class="container">
+    <h1 class="titre">
+        Attestation sur l’honneur <br/> 
+        pour s’inscrire à une action de formation <br />
+        dispensée aux créateurs et repreneurs d’entreprise 
+    </h1>
+    <p class="text">
+        Vous avez choisi de mobiliser vos droits CPF en vue de suivre une 
+        action de formation dispensée aux créateurs et repreneurs d’entreprise, 
+        mentionnée à l’article 1 du Décret n° 2018-1338 du 28 décembre 2018 relatif aux 
+        formations éligibles au titre du compte personnel de formation
+    </p>
+    <br>
+    <p>Merci d’indiquer dans quel cas vous vous trouvez :</p>
+
+      <% if @form['situation'] == "1" %>
+         <label class="label-check">
+          <%= check_box :situation, "1",class: 'check', checked: true %>
+          Création d'enteprise
+        </label>
+        <label class="label-check">
+          <%= check_box :situation, "2",class: 'check' %>
+          Reprise d'entreprise
+        </label>
+      <% else %>
+          <label class="label-check">
+          <%= check_box :situation, "1",class: 'check' %>
+          Création d'enteprise
+        </label>
+        <label class="label-check">
+          <%= check_box :situation, "2",class: 'check', checked: true %>
+          Reprise d'entreprise
+        </label>
+      <% end %>
+
+    <p>Pouvez-vous exposer en quelques lignes votre projet professionnel et dans quelle mesure l’action
+        demandée s’y inscrit :<p>
+
+    <p><%= "#{@form['motivations']}" %></p>
+
+    <p>Je soussigné(e) <%= @form['civility'] %></p>
+
+    <p><%= "#{@form['lastname']}  #{@form['firstname']}" %></p>
+
+    <p>domicilié(e) à</p>
+
+    <p><%= "#{@form['address']}, #{@form['zipcode']} #{@form['city']}" %></p>
+
+    <p>certifie sur l’honneur l’exactitude des informations mentionnées dans le présent document.</p>
+
+    <p>A  <%= @form['city'] %></p>
+
+    <p>LE  <%= Time.now.to_date.to_formatted_s(:rfc822) %></p>
+
+    <p>Signature :  </p>
+  </div>
+  <p class='text-red-left'>L’attestation doit être conservée par l’organisme de formation. Elle peut être demandée à tout moment par la Caisse des Dépôts. </p>
+  <p class='text-gray-center'>Attestation sur l’honneur <br>
+    - Offre « Accompagnement à la Création / Reprise d’entreprise » -
+  </p>
+  <div class="flex-img">
+    <%= image_tag wicked_pdf_asset_base64('ministere.png') , class: 'ministere' %>
+    <%= image_tag wicked_pdf_asset_base64('cdd.png') , class: 'cdd' %>
+  </div>
+</div>
