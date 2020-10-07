@@ -12,47 +12,57 @@
         mentionnée à l’article 1 du Décret n° 2018-1338 du 28 décembre 2018 relatif aux 
         formations éligibles au titre du compte personnel de formation
     </p>
-    <br>
     <p>Merci d’indiquer dans quel cas vous vous trouvez :</p>
-
-      <% if @form['situation'] == "1" %>
+    
+      <% if @form["situation"] == "1" %>
          <label class="label-check">
-          <%= check_box :situation, "1",class: 'check', checked: true %>
+          <%= check_box :situation, "1", class: 'check', checked: true %>
           Création d'enteprise
         </label>
+        <br/>
         <label class="label-check">
-          <%= check_box :situation, "2",class: 'check' %>
+          <%= check_box :situation, "2", class: 'check' %>
           Reprise d'entreprise
         </label>
       <% else %>
           <label class="label-check">
-          <%= check_box :situation, "1",class: 'check' %>
+          <%= check_box :situation, "1", class: 'check' %>
           Création d'enteprise
         </label>
+        <br/>
         <label class="label-check">
-          <%= check_box :situation, "2",class: 'check', checked: true %>
+          <%= check_box :situation, "2", class: 'check', checked: true %>
           Reprise d'entreprise
         </label>
       <% end %>
 
     <p>Pouvez-vous exposer en quelques lignes votre projet professionnel et dans quelle mesure l’action
         demandée s’y inscrit :<p>
-
-    <p><%= "#{@form['motivations']}" %></p>
+    <p class="text-hover"><%= "#{@form["motivations"]}" %></p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">..........................................................................................................................</p>
 
     <p>Je soussigné(e) <%= @form['civility'] %></p>
 
-    <p><%= "#{@form['lastname']}  #{@form['firstname']}" %></p>
+    <p class="text-hover"><%= "#{@form['lastname']}  #{@form['firstname']}" %></p>
+    <p class="empty-point">..........................................................................................................................</p>
 
     <p>domicilié(e) à</p>
+    <p class="text-hover"><%= "#{@form['address']}, #{@form['zipcode']} #{@form['city']}" %></p>
+    <p class="empty-point">..........................................................................................................................</p>
+    <p class="empty-point">.............................................................................................................</p>
 
-    <p><%= "#{@form['address']}, #{@form['zipcode']} #{@form['city']}" %></p>
+    <p>certifie sur l’honneur l’exactitude des indataations mentionnées dans le présent document.</p>
 
-    <p>certifie sur l’honneur l’exactitude des informations mentionnées dans le présent document.</p>
+    <p class="text-hover-sign"><%= @form['city'] %></p>
+    <p class="empty-point">A ...........................................</p>
 
-    <p>A  <%= @form['city'] %></p>
-
-    <p>LE  <%= Time.now.to_date.to_formatted_s(:rfc822) %></p>
+    <p class="text-hover-sign"><%= Time.now.to_date.to_formatted_s(:rfc822) %></p>
+    <p class="empty-point">Le ...........................................</p>
 
     <p>Signature :  </p>
   </div>
